@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 module.exports = {
   entry: './src/main.ts',
   mode: 'production',
+  devtool:false,
   output: {
     filename: 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
@@ -59,7 +60,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{
         from: path.resolve(__dirname, 'public'),
-        to: path.resolve(__dirname, 'dist/public'),
+        to: path.resolve(__dirname, 'dist'),
         globOptions: {
           ignore: ['**/index.html'] //HtmlWebpackPlugin已经处理html文件
         },
