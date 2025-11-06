@@ -59,7 +59,7 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{
         from: path.resolve(__dirname, 'public'),
-        to: path.resolve(__dirname, 'dist'),
+        to: path.resolve(__dirname, 'dist/public'),
         globOptions: {
           ignore: ['**/index.html'] //HtmlWebpackPlugin已经处理html文件
         },
