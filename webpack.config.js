@@ -12,6 +12,7 @@ module.exports = {
     filename: 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
+    publicPath: '/',
   },
   resolve: {
     extensions: ['.ts', '.js', '.vue'],
@@ -32,7 +33,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader,'style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader,'css-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
