@@ -4,6 +4,7 @@ const path = require('path')
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
+const CopyWebpackPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   entry: './src/main.ts',
@@ -33,7 +34,10 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader,'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'], 
+        //style-loader和minicssextractplugin冲突
+        //前者将sytle标签动态注入到js运行时的页面，适合开发环境,HMP热更新快
+        //或者提取为单独的css文件，适合生产环境，可缓存，加载快
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i,
@@ -51,6 +55,16 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css'
+    }),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: path.resolve(__dirname, 'public'),
+        to: path.resolve(__dirname, 'dist'),
+        globOptions: {
+          ignore: ['**/index.html'] //HtmlWebpackPlugin已经处理html文件
+        },
+        noErrorOnMissing: true //如果源目录不存在public不要报错
+      }]
     })
   ],
   optimization: {
