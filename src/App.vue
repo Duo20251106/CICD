@@ -6,7 +6,7 @@ console.log("🚀 ~ 1:", 1)
 
 <template>
   <div>
-    <h1>陈紫霞是大傻狗</h1>
+    <h1>萍萍是大傻狗</h1>
   </div>
 </template>
 
